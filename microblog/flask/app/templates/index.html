@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Вечер в хату, {{context.user.nickname}}!</h1>
+{% for post in context.posts %}
+<div><p>{{post.author.nickname}} говорит: <b>{{post.body}}</b></p></div>
+<br>
+<br>
+{% endfor %}
+<div><p>Погода в городе {{context.city}}</p></div>
+{% endblock %}

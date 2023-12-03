@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% if context.title %}
+    <title>{{context.title}} - microblog</title>
+    {% else %}
+    <title>microblog</title>
+    {% endif %}
+  </head>
+  <body>
+    <div>Microblog: <a href="/index">Home</a></div>
+    <hr>
+    {% block content %}
+    {% endblock %}
+    <hr>
+    <div>Jails: <a href="/jails">Jails Cast</a></div>
+    <hr>
+    {% include "jails.html" %}
+    <hr>
+  </body>
+</html>
