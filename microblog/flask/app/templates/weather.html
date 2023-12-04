@@ -1,16 +1,57 @@
-<html lang="ru" class="h-100">
+<html lang="ru" class="h-100" xmlns="http://www.w3.org/1999/html">
 <head>
     <div class="weather" xmlns="http://www.w3.org/1999/html">
-        <h3 class="weather_title">Погода в городе
-            <input class="form-control" type="text" placeholder="Введите город" value="">
-            <button type="button" class="btn btn-outline-success">Узнать погоду</button>
-        </h3>
-
-        <h3>Температура: {{context.cur_temp}} °C</h3>
-        <h3>Влажность: {{context.humidity}} %</h3>
-        <h3>Давление: {{context.pressure}} мм.рт.ст</h3>
-        <h3>Ветер: {{context.wind}} м/с</h3>
-        <h3>Закат солнца: {{context.sunrise_timestamp}}</h3>
-        <h3>Продолжительность дня: {{context.length_of_the_day}}</h3>
+        <td style="width: 200px">
+            Выберите город
+        </td>
+        <br>
+        <form method=POST action="{{url_for('main_blueprint.weather_cast')}}">
+            <select style="width: 100%" class="form-select" name="city">
+                {% for key, value in context.city_dict.items() %}
+                <option
+                        {% if key== context.selected_city %}
+                        selected
+                        {% endif %} value="{{key}}">
+                    {{value}}
+                </option>
+                {% endfor %}
+            </select>
+            <button style="width: 110px" type="submit" class="btn btn-outline-success">Узнать погоду</button>
+        </form>
+        </br>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Свойство</th>
+                <th scope="col">Значение</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th>Температура:</th>
+                <td>{{context.cur_temp}} °C</td>
+            </tr>
+            <tr>
+                <th>Влажность:</th>
+                <td>{{context.humidity}} %</td>
+            </tr>
+            <tr>
+                <th>Давление:</th>
+                <td>{{context.pressure}} мм.рт.ст</td>
+            </tr>
+            <tr>
+                <th>Ветер:</th>
+                <td>{{context.wind}} м/с</td>
+            </tr>
+            <tr>
+                <th>Закат солнца:</th>
+                <td>{{context.sunrise_timestamp}}</td>
+            </tr>
+            <tr>
+                <th>Продолжительность дня:</th>
+                <td>{{context.length_of_the_day}}</td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </head>
